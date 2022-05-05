@@ -10,7 +10,3 @@ print(f"Entrada: {reserva.getDataEntrada()}")
 print(f"{reserva.getTipoCliente()} : {dataEntrada}/Mai2022 {reserva.valoresHoteis().keys()} ")
 print(f"{reserva.getTipoCliente()} : {dataSaida}/Mai2022 {reserva.valoresHoteis().keys()} ")
 print(f"Saida: {reserva.getDataSaida()}")
-
-
-
-
