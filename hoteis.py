@@ -28,6 +28,7 @@ class Hoteis:
         valoresReward =[80, 110, 100] #reward
         adicionalNormal = [90, 60, 150] #Addnormal
         adcionalReward = [80, 50, 40] #Addreward
+        fimdesemana = [7, 8 , 14, 15, 21, 22] #lista datas fim de semana
         
         normallakewood = valoresNormal[0]
         rewardlakewood = valoresReward[0]
@@ -46,7 +47,50 @@ class Hoteis:
         
         data = self.dataSaida - self.dataEntrada
         
-        if self.tipoCliente == "Regular":
+        #Conferindo se alguma entrada cai no fim de semana
+        if self.tipoCliente == "Regular" and self.dataEntrada in fimdesemana:
+            if data * lakewoodNormal < data * bridgewoodNormal1 and data * lakewoodNormal < data * ridgewoodNormal2:
+                return hoteis[0]
+            
+            elif data * bridgewoodNormal1 < data * lakewoodNormal and data * bridgewoodNormal1 < data * ridgewoodNormal2:
+                return hoteis[1]
+            
+            elif data * ridgewoodNormal2 < data * lakewoodNormal and data * ridgewoodNormal2 < data * bridgewoodNormal1:
+                return hoteis[2]
+            
+        elif self.tipoCliente == "Reward" and self.dataEntrada in fimdesemana:
+            if data * lakewoodReward < data * bridgewoodReward2 and data * lakewoodReward < data * ridgewoodReward2:
+                return hoteis[0]
+            
+            elif data * bridgewoodReward2 < data * lakewoodReward and data * bridgewoodReward2 < data * ridgewoodReward2:
+                return hoteis[1]
+            
+            elif data * ridgewoodReward2 < data * lakewoodReward and data * ridgewoodReward2 < data * bridgewoodReward2:
+                return hoteis[2]
+        
+        #Conferindo se alguma saida cai no fim de semana
+        elif self.tipoCliente == "Regular" and self.dataSaida in fimdesemana:
+            if data * lakewoodNormal < data * bridgewoodNormal1 and data * lakewoodNormal < data * ridgewoodNormal2:
+                return hoteis[0]
+            
+            elif data * bridgewoodNormal1 < data * lakewoodNormal and data * bridgewoodNormal1 < data * ridgewoodNormal2:
+                return hoteis[1]
+            
+            elif data * ridgewoodNormal2 < data * lakewoodNormal and data * ridgewoodNormal2 < data * bridgewoodNormal1:
+                return hoteis[2]
+            
+        elif self.tipoCliente == "Reward" and self.dataSaida in fimdesemana:
+            if data * lakewoodReward < data * bridgewoodReward2 and data * lakewoodReward < data * ridgewoodReward2:
+                return hoteis[0]
+            
+            elif data * bridgewoodReward2 < data * lakewoodReward and data * bridgewoodReward2 < data * ridgewoodReward2:
+                return hoteis[1]
+            
+            elif data * ridgewoodReward2 < data * lakewoodReward and data * ridgewoodReward2 < data * bridgewoodReward2:
+                return hoteis[2]
+        
+            
+        elif self.tipoCliente == "Regular":
             if data * normallakewood < data * normabridgewood and data * normallakewood < data * normalridgewood:
                 return hoteis[0]
             
@@ -56,7 +100,7 @@ class Hoteis:
             elif data * normalridgewood < data * normallakewood and data * normalridgewood < data * normabridgewood:
                 return hoteis[2]
          
-        if self.tipoCliente == "Reward":
+        elif self.tipoCliente == "Reward":
             if data * rewardlakewood < data * rewardbridgewood and data * rewardlakewood < data * rewardridgewood:
                 return hoteis[0]
             
@@ -65,14 +109,19 @@ class Hoteis:
             
             elif data * rewardridgewood < data * rewardbridgewood and data * rewardridgewood < data * rewardlakewood:
                 return hoteis[2]
-            
-            
-    ##################### ------------ PareiAqui falta fazer verificação por dia da semana  --------#############################  
-            
         
-    def classificacao(self):
-        return "oi"
-    
-        
+        ######-----------desempate-----------########
+            
+        elif data * normallakewood == data * bridgewoodNormal1 and data * normallakewood == data * ridgewoodNormal2:
+            if hoteis[0].values() < hoteis[1].values() and hoteis[0].values() < hoteis[2].values():
+                return hoteis[0]
+            
+        elif data * bridgewoodNormal1 == data * lakewoodNormal and data * bridgewoodNormal1 == data * ridgewoodNormal2:
+            if hoteis[1].values() < hoteis[0].values() and hoteis[1].values() < hoteis[2].values():
+                return hoteis[1]
+            
+        elif data * ridgewoodNormal2 == data * lakewoodNormal and data * ridgewoodNormal2 == data * bridgewoodNormal1:
+            if hoteis[2].values() < hoteis[0].values() and hoteis[2].values() < hoteis[1].values():
+                return hoteis[2]
             
             
